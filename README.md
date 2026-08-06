@@ -1,133 +1,140 @@
-# Best Friend Challenge • Modern Web Application
+# 👯 Best Friend Challenge — Full-Stack Web Application
 
-A full-stack, production-ready **Best Friend Challenge** web application built with **FastAPI (Python)**, **SQLAlchemy**, and **Vanilla Modern HTML5/CSS3/ES6 JavaScript**.
-
-Features a glassmorphic UI, dark mode toggle, Web Audio API sound synthesis, 30-second circular countdown timer, QR code generation, canvas certificate export, and a secure **Delayed Answer Reveal** engine.
+A modern, responsive, multiplayer quiz web application designed for friends to test their compatibility and see how well they really know each other. Built with **FastAPI** on the backend and **Vanilla HTML5/CSS3/JavaScript (ES6+)** on the frontend for maximum performance and zero build-step overhead.
 
 ---
 
 ## 🌟 Key Features
 
-* **Multi-Format Quiz Engine**: Supports Multiple Choice (MCQ), True/False, Text Answers (case-insensitive), Emoji Choice, and 1–10 Rating Sliders.
-* **50+ Pre-populated Questions**: Categorized in Food, Lifestyle, Entertainment, Personal, and Fun & Quirky + custom question builder.
-* **Room & Invite Link System**: 6-character room codes, shareable invitation links (`/join.html?code=XXXXXX`), and SVG QR codes.
-* **Delayed Answer Reveal**: Neither player can see answers until **both** Player 1 (Creator) and Player 2 (Friend) have finished all questions.
-* **Answer Lock Protection**: Submitted answers are permanently locked to prevent editing or refresh exploits.
-* **Web Audio Sound Effects**: Zero-dependency Web Audio synth for clicks, countdown ticks, and victory fanfares.
-* **Canvas Certificate Export**: Download an official PNG compatibility certificate featuring player names, avatars, match percentage, and achievement rank (*"Soulmates ✨"*, *"Great Friends 🔥"*, *"Almost Twins 👯"*, *"Good Friends 👍"*, *"Need More Time Together ⏳"*).
-* **Public Leaderboard**: Highlights top compatibility match scores across all challenge rooms.
+* **Instant Multiplayer Rooms**: Host generates a unique 6-character room code; friends join seamlessly via link or code.
+* **Synchronized Game Flow**: Live polling keeps room state, player ready status, and answer submissions synchronized.
+* **Answer Locking & Reveal**: Answers remain completely hidden until both players finish the challenge.
+* **Compatibility Engine**: Calculates match percentages, compatibility scores, and assigns fun custom titles (e.g. *Soulmates ✨*, *Almost Twins 👯*).
+* **Rich Question Types**:
+  * Multiple Choice Questions (MCQ)
+  * True / False
+  * Free Text
+  * Rating Scale (1-10)
+  * Emoji Picker
+* **50+ Seeded Questions + Custom Questions**: Host can choose from preset categories or craft custom questions.
+* **Fully Responsive UI**: Modern glassmorphic aesthetic with mobile-optimized touch controls and smooth micro-animations.
 
 ---
 
-## 📁 Project Structure
+## 🏗️ Senior Developer Folder Architecture
 
-```
+```text
 best_friend_challenge/
-├── frontend/
-│   ├── index.html          # Landing Page & Hero Section
-│   ├── create.html         # Challenge Creation Wizard & Question Picker
-│   ├── join.html           # Join Room Screen
-│   ├── waiting.html        # Lobby & Live Status Polling
-│   ├── quiz.html           # Quiz Arena & Circular Timer
-│   ├── result.html         # Compatibility Match & Breakdown
-│   ├── leaderboard.html    # Public High Score Board
-│   ├── css/
-│   │   ├── style.css       # Design System Tokens & Glassmorphism
-│   │   ├── animations.css  # Keyframe Animations & Confetti
-│   │   ├── responsive.css  # Mobile & Tablet Breakpoints
-│   │   └── darkmode.css    # Deep Slate Dark Theme
-│   └── js/
-│       ├── api.js          # REST API Client Module
-│       ├── app.js          # Theme & Audio Controller
-│       ├── timer.js        # SVG 30s Circular Countdown Timer
-│       ├── quiz.js         # Quiz Arena & Answer Lock Engine
-│       ├── room.js         # Room Creator & Polling Engine
-│       ├── results.js      # Results Counter & Certificate Generator
-│       └── utils.js        # Web Audio Synth & SVG QR Generator
-├── backend/
-│   ├── main.py             # FastAPI App, CORS, Static Mounting & Question Seeder
-│   ├── database.py         # SQLAlchemy Engine (SQLite / PostgreSQL)
-│   ├── config.py           # Environment Variables & Settings
-│   ├── models.py           # Database Schemas (User, Room, Question, Answer, Result, Leaderboard)
-│   ├── schemas.py          # Pydantic Validation Schemas
-│   ├── auth.py             # User Sessions
-│   ├── utils.py            # Room Code & Match % Algorithms
-│   ├── routers/            # Modular Endpoint Handlers
-│   │   ├── rooms.py
-│   │   ├── quiz.py
-│   │   ├── users.py
-│   │   └── results.py
-│   ├── services/           # Business Logic Engines
-│   │   ├── room_service.py
-│   │   ├── result_service.py
-│   │   └── timer_service.py
-│   └── requirements.txt
-├── Dockerfile
-├── docker-compose.yml
-└── README.md
+├── backend/                  # FastAPI Application Core
+│   ├── app/                  # Main Application Package
+│   │   ├── core/             # Infrastructure, Database & App Configuration
+│   │   │   ├── config.py     # Environment & App Settings
+│   │   │   ├── database.py   # SQLAlchemy Engine & Session Factory
+│   │   │   └── auth.py       # Session Token Utilities
+│   │   ├── models/           # SQLAlchemy ORM Data Models
+│   │   │   └── models.py     # User, Room, Question, Answer, Result, Leaderboard
+│   │   ├── schemas/          # Pydantic Schemas & DTOs
+│   │   │   └── schemas.py    # Request/Response Validation Models
+│   │   ├── services/         # Core Domain Business Logic
+│   │   │   ├── room_service.py   # Room Creation & Player Pairing
+│   │   │   ├── result_service.py # Compatibility & Answer Comparison Engine
+│   │   │   └── timer_service.py  # Timer Helper Utilities
+│   │   ├── utils/            # Shared Utilities
+│   │   │   └── helpers.py    # Code Generation & Match Score Algorithms
+│   │   ├── routers/          # REST API Route Controllers
+│   │   │   ├── quiz.py       # Questions & Answer Submissions
+│   │   │   ├── results.py    # Compatibility Results & Leaderboard
+│   │   │   ├── rooms.py      # Room Management & Status
+│   │   │   └── users.py      # User Session Endpoints
+│   │   └── main.py           # FastAPI Initialization & Static Asset Mounting
+│   ├── run.py                # Server Execution Entrypoint
+│   └── requirements.txt      # Python Dependencies
+├── frontend/                 # Static Web Assets (Vanilla HTML/CSS/JS)
+│   ├── css/                  # Styling & Responsive Breakpoint Matrix
+│   │   ├── style.css         # Modern Theme & Utilities
+│   │   └── responsive.css    # Mobile & Tablet Adjustments
+│   ├── js/                   # Vanilla JavaScript Modules
+│   │   ├── api.js            # Unified Fetch REST API Client
+│   │   ├── app.js            # Core App Logic & Global Helpers
+│   │   ├── create.js         # Challenge Room Creation
+│   │   ├── join.js           # Room Joining Flow
+│   │   ├── quiz.js           # Live Quiz Engine & Input Handling
+│   │   ├── results.js        # Score Breakdown & Celebration UI
+│   │   └── waiting.js        # Real-time Lobby Polling
+│   └── *.html                # Modular Views (index, create, join, waiting, quiz, results)
+├── scripts/                  # Automated Startup Scripts
+│   ├── start.bat             # Windows Quick Launcher
+│   └── start.sh              # macOS/Linux Quick Launcher
+├── .gitignore                # Comprehensive Python / Database Git Ignore
+├── README.md                 # Technical Documentation
+└── start.bat                 # Root Convenience Launcher
 ```
 
 ---
 
-## 🚀 Quick Start (Local Setup)
+## 🛠️ Technology Stack
 
-### 1. Prerequisites
-* Python 3.10+ installed
+| Layer | Technology |
+|---|---|
+| **Backend Framework** | [FastAPI](https://fastapi.tiangolo.com/) (Python 3.10+) |
+| **ORM / Database** | [SQLAlchemy](https://www.sqlalchemy.org/) + SQLite (Dev) / PostgreSQL (Prod ready) |
+| **Data Validation** | [Pydantic v2](https://docs.pydantic.dev/) |
+| **Frontend UI** | HTML5, CSS3 (CSS Variables, Flexbox/Grid, Glassmorphism), ES6+ Vanilla JS |
+| **API Architecture** | RESTful JSON API |
 
-### 2. Run the Application
-Open PowerShell / Terminal in the project root:
+---
 
+## 🚀 Quick Start (Local Development)
+
+### Windows (One-Click Launch)
+Simply double-click `start.bat` in the root folder, or execute in PowerShell:
 ```powershell
-# Navigate into the backend directory
-cd best_friend_challenge\backend
-
-# Install dependencies (first time only)
-python -m pip install -r requirements.txt
-
-# Start the FastAPI server with live reload
-python -m uvicorn main:app --reload
+.\start.bat
 ```
 
-Open your browser at:
-`http://127.0.0.1:8000`
+### Manual Command Line Startup (All Platforms)
+
+1. **Navigate to the backend directory**:
+   ```bash
+   cd backend
+   ```
+
+2. **Install Python dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Start the FastAPI server**:
+   ```bash
+   python run.py
+   ```
+   *Alternatively:*
+   ```bash
+   python -m uvicorn main:app --reload
+   ```
+
+4. **Access the application**:
+   * 🌐 **Web Interface**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+   * 📜 **Interactive API Docs (Swagger)**: [http://127.0.0.1:8000/api/docs](http://127.0.0.1:8000/api/docs)
 
 ---
 
-## 🐳 Docker Deployment
+## 📡 API Endpoints Overview
 
-To build and run using Docker:
-
-```bash
-docker-compose up --build -d
-```
-
-The app will be available at `http://localhost:8000`.
-
----
-
-## 📡 REST API Documentation
-
-FastAPI provides automatic interactive Swagger documentation at:
-`http://127.0.0.1:8000/api/docs`
-
-### Key Endpoints:
-* `POST /api/rooms/create`: Create a new challenge room
-* `POST /api/rooms/join`: Join a room using room code
-* `GET /api/rooms/{id}`: Fetch live room & player readiness status
-* `POST /api/rooms/ready`: Toggle player readiness
-* `GET /api/quiz/questions`: Fetch 50+ question bank
-* `GET /api/quiz/room/{id}/questions`: Fetch specific room questions
-* `POST /api/quiz/submit-answer`: Submit and lock question answer
-* `POST /api/quiz/finish`: Mark player quiz completion
-* `GET /api/results/{id}`: Fetch detailed breakdown and delayed reveal results
-* `GET /api/leaderboard`: Fetch public leaderboard
-* `GET /api/health`: Service health check
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/rooms/create` | Create a new challenge room with preset/custom questions |
+| `POST` | `/api/rooms/join` | Join an existing room via 6-character room code |
+| `GET` | `/api/rooms/{room_id}` | Fetch current room status and player states |
+| `POST` | `/api/rooms/ready` | Toggle player ready state in the lobby |
+| `GET` | `/api/quiz/room/{room_id}/questions` | Get active questions for the room |
+| `POST` | `/api/quiz/submit-answer` | Lock and store a player's answer |
+| `POST` | `/api/quiz/finish` | Signal that player has completed all questions |
+| `GET` | `/api/results/{room_id}` | Calculate match score and generate side-by-side comparison |
+| `GET` | `/api/leaderboard` | View top friend matches |
+| `GET` | `/api/health` | Backend and database health status |
 
 ---
 
-## 🛡️ Switching to PostgreSQL (Production)
-
-Set the `DATABASE_URL` environment variable:
-`DATABASE_URL=postgresql://user:password@localhost:5432/bf_challenge_db`
-
-The SQLAlchemy ORM engine will automatically connect to PostgreSQL without changing application code.
+## ⚖️ License
+Distributed under the **MIT License**. Free for personal and commercial use.

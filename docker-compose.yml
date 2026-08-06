@@ -1,14 +1,3 @@
-version: '3.8'
-
-services:
-  app:
-    build: .
-    container_name: best_friend_challenge_app
-    ports:
-      - "8000:8000"
-    environment:
-      - DATABASE_URL=sqlite:///./bf_challenge.db
-      - SECRET_KEY=production-bf-challenge-super-secret-key
-    volumes:
-      - ./data:/app/data
-    restart: always
+# This file is intentionally left empty.
+# Docker support has been removed. This project runs locally without Docker.
+# See README.md for setup instructions.

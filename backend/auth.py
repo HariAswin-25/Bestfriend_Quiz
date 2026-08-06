@@ -1,4 +1,1 @@
-import secrets
-
-def generate_session_id() -> str:
-    return secrets.token_urlsafe(32)
+from app.core.auth import *
