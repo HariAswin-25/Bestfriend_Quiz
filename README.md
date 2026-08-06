@@ -4,6 +4,26 @@ A modern, responsive, multiplayer quiz web application designed for friends to t
 
 ---
 
+## 📸 Application Screenshots
+
+### 🏠 Landing Page
+![Landing Page Overview](assets/landing_page1.png)
+![Landing Page Features](assets/landing_page2.png)
+
+### ➕ Create Challenge Page
+![Create Challenge Page](assets/create_challange_page.png)
+
+### 🔑 Join Room Page
+![Join Room Page](assets/join_room_page.png)
+
+### ⏳ Waiting Lobby & Room Invite Page
+![Room Invite Page](assets/room_invite_page.png)
+
+### ❓ Quiz Questions Page
+![Questions Page](assets/questions_page.png)
+
+---
+
 ## 🌟 Key Features
 
 * **Instant Multiplayer Rooms**: Host generates a unique 6-character room code; friends join seamlessly via link or code.
@@ -25,6 +45,13 @@ A modern, responsive, multiplayer quiz web application designed for friends to t
 
 ```text
 best_friend_challenge/
+├── assets/                   # Application UI Screenshots
+│   ├── landing_page1.png
+│   ├── landing_page2.png
+│   ├── create_challange_page.png
+│   ├── join_room_page.png
+│   ├── room_invite_page.png
+│   └── questions_page.png
 ├── backend/                  # FastAPI Application Core
 │   ├── app/                  # Main Application Package
 │   │   ├── core/             # Infrastructure, Database & App Configuration
