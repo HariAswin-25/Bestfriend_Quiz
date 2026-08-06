@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waiting Room • Best Friend Quiz</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="waiting-page">
+
+  <nav class="navbar">
+    <a href="index.html" class="logo"><span>🤝</span> BestFriend Quiz</a>
+    <div class="nav-controls">
+      <button id="sound-toggle" class="btn-icon" title="Toggle Sound">🔊</button>
+      <button id="theme-toggle" class="btn-icon" title="Toggle Theme">🌙</button>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width:700px; text-align:center;">
+    <div class="glass-card fade-in">
+      <span class="badge" style="background:var(--primary-color); color:white; font-weight:700; padding:0.4rem 1rem; border-radius:20px; font-size:0.9rem;">
+        ROOM CODE: <span id="room-code-display">------</span>
+      </span>
+      
+      <h1 id="room-title-display" style="font-size:clamp(1.5rem, 4vw, 2rem); font-weight:800; margin:1rem 0;">
+        Best Friend Challenge Lobby
+      </h1>
+
+      <!-- Player Slots Grid (Responsive stacking via waiting-slots-grid) -->
+      <div class="waiting-slots-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin:2rem 0;">
+        <!-- Player 1 Slot -->
+        <div class="glass-card" style="padding:1.5rem; background:rgba(255,255,255,0.15);">
+          <div id="p1-avatar" style="font-size:3.5rem;">😊</div>
+          <h3 id="p1-name" style="font-size:1.2rem; font-weight:700; margin:0.5rem 0;">Player 1</h3>
+          <span id="p1-status" style="font-weight:700; color:var(--warning-color);">Waiting...</span>
+        </div>
+
+        <!-- Player 2 Slot -->
+        <div class="glass-card" style="padding:1.5rem; background:rgba(255,255,255,0.15);">
+          <div id="p2-avatar" style="font-size:3.5rem;">❓</div>
+          <h3 id="p2-name" style="font-size:1.2rem; font-weight:700; margin:0.5rem 0;">Waiting for Friend...</h3>
+          <span id="p2-status" style="font-weight:700; color:var(--text-muted);">Share Link below</span>
+        </div>
+      </div>
+
+      <!-- Readiness Toggle Button -->
+      <button id="toggle-ready-btn" class="btn btn-secondary" style="font-size:1.1rem; padding:1rem 2.5rem; width:100%; margin-bottom:2rem;">
+        Click when Ready 👍
+      </button>
+
+      <!-- Invite Code & QR Code Drawer -->
+      <div style="background:rgba(99,102,241,0.08); padding:1.5rem; border-radius:16px; border:1px solid var(--card-border);">
+        <h4 style="font-size:1rem; font-weight:700; margin-bottom:1rem;">Invite Your Friend</h4>
+        <div style="display:flex; justify-content:center; gap:1rem; margin-bottom:1rem; flex-wrap:wrap;">
+          <button id="copy-link-btn" class="btn btn-primary">🔗 Copy Invite Link</button>
+          <button id="copy-code-btn" class="btn btn-outline">📋 Copy Code</button>
+        </div>
+        <div id="qr-code-box" style="display:flex; justify-content:center; margin-top:1rem;"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module" src="js/room.js"></script>
+</body>
+</html>

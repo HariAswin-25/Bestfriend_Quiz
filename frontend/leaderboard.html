@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard • Best Friend Quiz</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="leaderboard-page">
+
+  <nav class="navbar">
+    <a href="index.html" class="logo"><span>🤝</span> BestFriend Quiz</a>
+    <div class="nav-controls">
+      <a href="create.html" class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.9rem;">+ New Challenge</a>
+      <button id="sound-toggle" class="btn-icon">🔊</button>
+      <button id="theme-toggle" class="btn-icon">🌙</button>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width:850px;">
+    <div class="glass-card fade-in" style="padding:2.5rem 2rem;">
+      <h1 style="font-size:2.2rem; font-weight:800; text-align:center; margin-bottom:0.5rem;">
+        🏆 Best Friend Leaderboard
+      </h1>
+      <p style="text-align:center; color:var(--text-muted); margin-bottom:2rem;">
+        Top scoring friendship pairs across all challenges!
+      </p>
+
+      <div id="leaderboard-list">
+        <div style="text-align:center; padding:2rem;">Loading leaderboard...</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { API } from './js/api.js';
+    import { escapeHtml } from './js/utils.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const container = document.getElementById('leaderboard-list');
+      try {
+        const data = await API.getLeaderboard();
+        if (!data || data.length === 0) {
+          container.innerHTML = `<div style="text-align:center; padding:2rem; color:var(--text-muted);">No entries yet! Be the first to complete a challenge.</div>`;
+          return;
+        }
+
+        container.innerHTML = data.map((item, idx) => `
+          <div class="glass-card" style="padding:1.2rem; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:1.2rem;">
+              <span style="font-size:1.4rem; font-weight:800; width:30px; text-align:center; color:${idx === 0 ? '#f59e0b' : idx === 1 ? '#94a3b8' : idx === 2 ? '#b45309' : 'var(--text-muted)'}">
+                ${idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx+1}`}
+              </span>
+              <div>
+                <h3 style="font-size:1.1rem; font-weight:700;">${escapeHtml(item.creator_name)} & ${escapeHtml(item.friend_name)}</h3>
+                <span style="font-size:0.85rem; color:var(--text-muted);">${escapeHtml(item.achievement)}</span>
+              </div>
+            </div>
+            <div style="font-size:1.6rem; font-weight:800; color:var(--primary-color);">
+              ${item.match_percentage}%
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        container.innerHTML = `<div style="text-align:center; padding:2rem; color:#ef4444;">Failed to load leaderboard.</div>`;
+      }
+    });
+  </script>
+</body>
+</html>

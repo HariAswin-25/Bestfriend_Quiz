@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Friend Challenge • How Well Do Your Friends Know You?</title>
+  <meta name="description" content="Create your custom Best Friend Challenge quiz, invite your friends, lock in answers, and reveal compatibility scores with animated trophies and certificates!">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="landing-page">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <span>🤝</span> BestFriend Quiz
+    </a>
+    <div class="nav-controls">
+      <a href="leaderboard.html" class="btn btn-secondary" style="padding:0.5rem 1rem; font-size:0.9rem;">🏆 Leaderboard</a>
+      <button id="sound-toggle" class="btn-icon" title="Toggle Sound">🔊</button>
+      <button id="theme-toggle" class="btn-icon" title="Toggle Theme">🌙</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="container">
+    <div class="hero-grid" style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:3rem; align-items:center; margin:3rem 0;">
+      <div class="fade-in">
+        <span class="badge" style="background:rgba(102,126,234,0.2); color:var(--primary-color); font-weight:800; padding:0.4rem 1rem; border-radius:20px;">
+          ✨ THE ULTIMATE FRIENDSHIP TEST
+        </span>
+        <h1 style="font-size:3.2rem; font-weight:800; line-height:1.2; margin:1.2rem 0;">
+          How Well Do Your Best Friends <span style="background:linear-gradient(135deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Really Know You?</span>
+        </h1>
+        <p style="font-size:1.15rem; color:var(--text-muted); margin-bottom:2rem;">
+          Create a challenge, pick from 50+ fun questions or write custom ones, send a room code, and lock answers. Neither player sees the results until both finish!
+        </p>
+        <div class="hero-buttons" style="display:flex; gap:1.2rem; flex-wrap:wrap;">
+          <a href="create.html" class="btn btn-primary" style="font-size:1.1rem; padding:1rem 2rem;">
+            🚀 Create Challenge
+          </a>
+          <a href="join.html" class="btn btn-secondary" style="font-size:1.1rem; padding:1rem 2rem;">
+            🔑 Join Room
+          </a>
+        </div>
+      </div>
+
+      <!-- Animated Glass Card Showcase -->
+      <div class="floating-card fade-in" style="animation-delay:0.2s;">
+        <div class="glass-card" style="text-align:center; padding:2.5rem 1.5rem;">
+          <div style="font-size:4rem; margin-bottom:1rem;">🏆</div>
+          <h2 style="font-size:1.8rem; font-weight:800; margin-bottom:0.5rem;">Match Score: 96%</h2>
+          <span style="background:#10b981; color:white; font-weight:800; padding:0.4rem 1.2rem; border-radius:20px; font-size:0.95rem;">
+            Achievement: Soulmates ✨
+          </span>
+          <p style="color:var(--text-muted); margin-top:1.2rem; font-size:0.95rem;">
+            "Alex and Sam answered 9 out of 10 questions identically!"
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature Cards Section -->
+    <div style="margin:5rem 0;">
+      <h2 style="text-align:center; font-size:2.2rem; font-weight:800; margin-bottom:3rem;">
+        Why Everyone Loves BestFriend Quiz ❤️
+      </h2>
+      <div class="features-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem;">
+        
+        <div class="glass-card fade-in">
+          <div style="font-size:2.5rem; margin-bottom:1rem;">🔒</div>
+          <h3 style="font-size:1.3rem; font-weight:700; margin-bottom:0.5rem;">Locked & Delayed Reveal</h3>
+          <p style="color:var(--text-muted);">
+            No cheat exploits! Answers remain locked until both players complete all questions.
+          </p>
+        </div>
+
+        <div class="glass-card fade-in" style="animation-delay:0.1s;">
+          <div style="font-size:2.5rem; margin-bottom:1rem;">⚡</div>
+          <h3 style="font-size:1.3rem; font-weight:700; margin-bottom:0.5rem;">5 Question Formats</h3>
+          <p style="color:var(--text-muted);">
+            Multiple choice, True/False, open text, emoji choice, and 1–10 rating sliders!
+          </p>
+        </div>
+
+        <div class="glass-card fade-in" style="animation-delay:0.2s;">
+          <div style="font-size:2.5rem; margin-bottom:1rem;">📜</div>
+          <h3 style="font-size:1.3rem; font-weight:700; margin-bottom:0.5rem;">Download Certificate</h3>
+          <p style="color:var(--text-muted);">
+            Get an official shareable PNG compatibility certificate with your final score!
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Best Friend Challenge App • Built with FastAPI & Modern Web Design</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

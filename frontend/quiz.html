@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Arena • Best Friend Quiz</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="quiz-page">
+
+  <nav class="navbar">
+    <a href="index.html" class="logo"><span>🤝</span> BestFriend Quiz</a>
+    <div class="nav-controls">
+      <button id="sound-toggle" class="btn-icon">🔊</button>
+      <button id="theme-toggle" class="btn-icon">🌙</button>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width:700px;">
+    <!-- Progress Header -->
+    <div style="margin-bottom:1.5rem;">
+      <div style="display:flex; justify-content:space-between; font-weight:700; font-size:0.95rem; margin-bottom:0.4rem;">
+        <span id="question-counter">Question 1 of 5</span>
+        <span>Answers locked on submission 🔒</span>
+      </div>
+      <div style="width:100%; height:10px; background:rgba(255,255,255,0.2); border-radius:5px; overflow:hidden;">
+        <div id="progress-fill" style="width:0%; height:100%; background:linear-gradient(90deg, var(--primary-color), var(--secondary-color)); transition:width 0.3s ease;"></div>
+      </div>
+    </div>
+
+    <!-- Question Card Container -->
+    <div id="quiz-card-container">
+      <div class="glass-card text-center" style="padding:3rem 1.5rem;">
+        <div class="spinner" style="margin:0 auto 1.5rem auto;"></div>
+        <p style="font-weight:700;">Loading Quiz Questions...</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/quiz.js"></script>
+</body>
+</html>

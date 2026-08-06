@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Challenge Results • Best Friend Quiz</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="result-page">
+
+  <nav class="navbar">
+    <a href="index.html" class="logo"><span>🤝</span> BestFriend Quiz</a>
+    <div class="nav-controls">
+      <a href="leaderboard.html" class="btn btn-secondary" style="padding:0.5rem 1rem; font-size:0.9rem;">🏆 Leaderboard</a>
+      <button id="sound-toggle" class="btn-icon">🔊</button>
+      <button id="theme-toggle" class="btn-icon">🌙</button>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width:800px; text-align:center;">
+    <!-- Main Result Card -->
+    <div class="glass-card fade-in" style="padding:2.5rem 2rem; margin-bottom:2rem;">
+      <div style="font-size:4rem; margin-bottom:0.5rem;" class="bounce-in">🏆</div>
+
+      <h1 id="res-winner-text" style="font-size:2.2rem; font-weight:800; margin-bottom:0.4rem;">
+        Calculating Results...
+      </h1>
+
+      <div style="margin-bottom:1.5rem;">
+        <span id="res-achievement-badge" style="background:linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color:white; font-weight:800; padding:0.5rem 1.5rem; border-radius:25px; font-size:1.1rem; display:inline-block;">
+          Analyzing Compatibility...
+        </span>
+      </div>
+
+      <!-- Match Score Counter -->
+      <div style="margin:2rem 0;">
+        <div style="font-size:4.5rem; font-weight:800; background:linear-gradient(135deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;" id="res-percentage-text">
+          0%
+        </div>
+        <p style="color:var(--text-muted); font-size:1.1rem;">
+          Matched <strong id="res-matched-count" style="color:var(--text-main);">0</strong> out of <strong id="res-total-count" style="color:var(--text-main);">0</strong> Questions!
+        </p>
+      </div>
+
+      <!-- Avatars Comparison -->
+      <div style="display:flex; justify-content:center; align-items:center; gap:2rem; margin:2rem 0;">
+        <div>
+          <div id="res-p1-avatar" style="font-size:3.5rem;">😊</div>
+          <div id="res-p1-name" style="font-weight:700; margin-top:0.3rem;">Player 1</div>
+        </div>
+
+        <div style="font-size:2rem; font-weight:800; color:var(--primary-color);">VS</div>
+
+        <div>
+          <div id="res-p2-avatar" style="font-size:3.5rem;">😎</div>
+          <div id="res-p2-name" style="font-weight:700; margin-top:0.3rem;">Player 2</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-top:2rem;">
+        <button id="download-cert-btn" class="btn btn-primary" style="font-size:1.05rem; padding:0.9rem 1.8rem;">
+          📜 Download Certificate
+        </button>
+        <button id="share-res-btn" class="btn btn-secondary" style="font-size:1.05rem; padding:0.9rem 1.8rem;">
+          📢 Share Results
+        </button>
+        <a href="create.html" class="btn btn-outline" style="font-size:1.05rem; padding:0.9rem 1.8rem;">
+          🔄 Play Again
+        </a>
+      </div>
+    </div>
+
+    <!-- Side-by-Side Detailed Breakdown -->
+    <div style="text-align:left; margin-bottom:3rem;">
+      <h2 style="font-size:1.6rem; font-weight:800; margin-bottom:1.5rem; text-align:center;">
+        Detailed Answer Breakdown 🔍
+      </h2>
+      <div id="res-breakdown-list">
+        <div style="text-align:center; padding:2rem;">Loading breakdown details...</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/results.js"></script>
+</body>
+</html>
