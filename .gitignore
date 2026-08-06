@@ -10,7 +10,7 @@ ENV/
 env.bak/
 venv.bak/
 
-# SQLite Database
+# Database (SQLite Local Dev)
 *.db
 *.sqlite3
 *.sqlite
@@ -28,7 +28,3 @@ venv.bak/
 # OS Specific
 .DS_Store
 Thumbs.db
-
-# Docker (Deprecated - Local Development Only)
-Dockerfile
-docker-compose.yml
