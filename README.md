@@ -161,7 +161,3 @@ Simply double-click `start.bat` in the root folder, or execute in PowerShell:
 | `GET` | `/api/leaderboard` | View top friend matches |
 | `GET` | `/api/health` | Backend and database health status |
 
----
-
-## License
-Distributed under the **MIT License**. Free for personal and commercial use.
