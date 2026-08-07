@@ -19,19 +19,32 @@ export class RoomManager {
       });
     });
 
+    const fallbackQuestions = [
+      { id: "q1", text: "What is my absolute favorite food?", category: "Food", type: "mcq", options: ["Pizza", "Sushi", "Tacos", "Burgers"] },
+      { id: "q2", text: "Tea or Coffee?", category: "Food", type: "tf", options: ["Tea 🍵", "Coffee ☕"] },
+      { id: "q3", text: "What is my go-to pizza topping?", category: "Food", type: "mcq", options: ["Extra Cheese", "Pepperoni", "Mushrooms", "Pineapple"] },
+      { id: "q4", text: "Am I a morning person or a night owl?", category: "Lifestyle", type: "tf", options: ["Morning Bird 🌅", "Night Owl 🦉"] },
+      { id: "q5", text: "Cats or Dogs?", category: "Lifestyle", type: "tf", options: ["Cats 🐱", "Dogs 🐶"] }
+    ];
+
     // Fetch Question Library for Picker
     async function loadQuestionLibrary() {
       try {
         defaultQuestionsBank = await API.getQuestionLibrary();
-        // Auto pre-select first 5 default questions if none selected yet
-        if (selectedQuestionIds.length === 0 && defaultQuestionsBank.length > 0) {
-          selectedQuestionIds = defaultQuestionsBank.slice(0, 5).map(q => q.id);
+        if (!defaultQuestionsBank || defaultQuestionsBank.length === 0) {
+          defaultQuestionsBank = fallbackQuestions;
         }
-        renderQuestionLibrary(defaultQuestionsBank);
-        updateQuestionCounter();
       } catch (e) {
-        showToast('Failed to load question library', 'error');
+        console.warn('Backend server offline or CORS restriction. Using fallback question library.', e);
+        defaultQuestionsBank = fallbackQuestions;
       }
+
+      // Auto pre-select first 5 default questions if none selected yet
+      if (selectedQuestionIds.length === 0 && defaultQuestionsBank.length > 0) {
+        selectedQuestionIds = defaultQuestionsBank.slice(0, 5).map(q => q.id);
+      }
+      renderQuestionLibrary(defaultQuestionsBank);
+      updateQuestionCounter();
     }
 
     function renderQuestionLibrary(questions) {

@@ -1,5 +1,12 @@
 // REST API Client Module
-const API_BASE = '/api';
+const getApiBase = () => {
+  if (window.location.protocol === 'file:' || !window.location.origin || window.location.origin === 'null') {
+    return 'http://127.0.0.1:8000/api';
+  }
+  return '/api';
+};
+
+const API_BASE = getApiBase();
 
 async function handleResponse(response) {
   if (!response.ok) {
