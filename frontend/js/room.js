@@ -23,7 +23,12 @@ export class RoomManager {
     async function loadQuestionLibrary() {
       try {
         defaultQuestionsBank = await API.getQuestionLibrary();
+        // Auto pre-select first 5 default questions if none selected yet
+        if (selectedQuestionIds.length === 0 && defaultQuestionsBank.length > 0) {
+          selectedQuestionIds = defaultQuestionsBank.slice(0, 5).map(q => q.id);
+        }
         renderQuestionLibrary(defaultQuestionsBank);
+        updateQuestionCounter();
       } catch (e) {
         showToast('Failed to load question library', 'error');
       }
@@ -33,15 +38,30 @@ export class RoomManager {
       const container = document.getElementById('question-library-list');
       if (!container) return;
 
-      container.innerHTML = questions.map(q => `
+      container.innerHTML = questions.map(q => {
+        const isChecked = selectedQuestionIds.includes(q.id);
+        return `
         <div class="glass-card question-library-item" data-id="${q.id}" style="padding:1rem; margin-bottom:0.8rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer;">
           <div>
             <span class="badge" style="font-size:0.75rem; background:rgba(102,126,234,0.2); color:var(--primary-color); padding:0.2rem 0.5rem; border-radius:6px;">${escapeHtml(q.category)}</span>
             <p style="font-weight:600; margin-top:0.3rem;">${escapeHtml(q.text)}</p>
           </div>
-          <input type="checkbox" class="q-checkbox" data-id="${q.id}" style="width:20px; height:20px; cursor:pointer;" />
+          <input type="checkbox" class="q-checkbox" data-id="${q.id}" ${isChecked ? 'checked' : ''} style="width:20px; height:20px; cursor:pointer;" />
         </div>
-      `).join('');
+      `;
+      }).join('');
+
+      // Make clicking the card toggle the checkbox
+      container.querySelectorAll('.question-library-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+          if (e.target.tagName.toLowerCase() === 'input') return;
+          const cb = item.querySelector('.q-checkbox');
+          if (cb) {
+            cb.checked = !cb.checked;
+            cb.dispatchEvent(new Event('change'));
+          }
+        });
+      });
 
       // Checkbox event binding
       container.querySelectorAll('.q-checkbox').forEach(cb => {
