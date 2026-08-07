@@ -1,35 +1,35 @@
-# 👯 Best Friend Challenge — Full-Stack Web Application
+# Best Friend Challenge — Full-Stack Web Application
 
 A modern, responsive, multiplayer quiz web application designed for friends to test their compatibility and see how well they really know each other. Built with **FastAPI** on the backend and **Vanilla HTML5/CSS3/JavaScript (ES6+)** on the frontend for maximum performance and zero build-step overhead.
 
 ---
 
-## 📸 Application Screenshots
+## Application Screenshots
 
-### 🏠 Landing Page
+### Landing Page
 ![Landing Page Overview](assets/landing_page1.png)
 ![Landing Page Features](assets/landing_page2.png)
 
-### ➕ Create Challenge Page
+### Create Challenge Page
 ![Create Challenge Page](assets/create_challange_page.png)
 
-### 🔑 Join Room Page
+### Join Room Page
 ![Join Room Page](assets/join_room_page.png)
 
-### ⏳ Waiting Lobby & Room Invite Page
+### Waiting Lobby & Room Invite Page
 ![Room Invite Page](assets/room_invite_page.png)
 
-### ❓ Quiz Questions Page
+### Quiz Questions Page
 ![Questions Page](assets/questions_page.png)
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 * **Instant Multiplayer Rooms**: Host generates a unique 6-character room code; friends join seamlessly via link or code.
 * **Synchronized Game Flow**: Live polling keeps room state, player ready status, and answer submissions synchronized.
 * **Answer Locking & Reveal**: Answers remain completely hidden until both players finish the challenge.
-* **Compatibility Engine**: Calculates match percentages, compatibility scores, and assigns fun custom titles (e.g. *Soulmates ✨*, *Almost Twins 👯*).
+* **Compatibility Engine**: Calculates match percentages, compatibility scores, and assigns fun custom titles (e.g. *Soulmates*, *Almost Twins*).
 * **Rich Question Types**:
   * Multiple Choice Questions (MCQ)
   * True / False
@@ -41,7 +41,7 @@ A modern, responsive, multiplayer quiz web application designed for friends to t
 
 ---
 
-## 🏗️ Senior Developer Folder Architecture
+## Folder Architecture
 
 ```text
 best_friend_challenge/
@@ -99,7 +99,7 @@ best_friend_challenge/
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 | Layer | Technology |
 |---|---|
@@ -111,7 +111,7 @@ best_friend_challenge/
 
 ---
 
-## 🚀 Quick Start (Local Development)
+## Quick Start (Local Development)
 
 ### Windows (One-Click Launch)
 Simply double-click `start.bat` in the root folder, or execute in PowerShell:
@@ -141,12 +141,12 @@ Simply double-click `start.bat` in the root folder, or execute in PowerShell:
    ```
 
 4. **Access the application**:
-   * 🌐 **Web Interface**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-   * 📜 **Interactive API Docs (Swagger)**: [http://127.0.0.1:8000/api/docs](http://127.0.0.1:8000/api/docs)
+   * **Web Interface**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+   * **Interactive API Docs (Swagger)**: [http://127.0.0.1:8000/api/docs](http://127.0.0.1:8000/api/docs)
 
 ---
 
-## 📡 API Endpoints Overview
+## API Endpoints Overview
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -163,5 +163,5 @@ Simply double-click `start.bat` in the root folder, or execute in PowerShell:
 
 ---
 
-## ⚖️ License
+## License
 Distributed under the **MIT License**. Free for personal and commercial use.
