@@ -39,10 +39,6 @@ export class RoomManager {
         defaultQuestionsBank = fallbackQuestions;
       }
 
-      // Auto pre-select first 5 default questions if none selected yet
-      if (selectedQuestionIds.length === 0 && defaultQuestionsBank.length > 0) {
-        selectedQuestionIds = defaultQuestionsBank.slice(0, 5).map(q => q.id);
-      }
       renderQuestionLibrary(defaultQuestionsBank);
       updateQuestionCounter();
     }
