@@ -21,6 +21,18 @@ def create_challenge_room(
     while db.query(Room).filter(Room.code == code).first() is not None:
         code = generate_room_code(6)
 
+    # Initialize Room first to get valid room.id for foreign key constraints
+    room = Room(
+        code=code,
+        title=title or "Best Friend Challenge",
+        creator_id=creator.id,
+        question_count=0,
+        question_ids="[]",
+        status="WAITING"
+    )
+    db.add(room)
+    db.flush()
+
     final_question_ids = []
     
     if question_ids:
@@ -28,11 +40,15 @@ def create_challenge_room(
 
     if custom_questions:
         for cq in custom_questions:
+            cq_text = cq.text if hasattr(cq, 'text') else cq.get('text')
+            cq_type = cq.type if hasattr(cq, 'type') else cq.get('type', 'mcq')
+            cq_opts = cq.options if hasattr(cq, 'options') else cq.get('options', [])
+            
             custom_q_model = CustomQuestion(
-                room_id=creator.id,
-                text=cq.text,
-                type=cq.type,
-                options=json.dumps(cq.options) if cq.options else None
+                room_id=room.id,
+                text=cq_text,
+                type=cq_type,
+                options=json.dumps(cq_opts) if cq_opts else None
             )
             db.add(custom_q_model)
             db.flush()
@@ -42,22 +58,12 @@ def create_challenge_room(
         defaults = db.query(Question).filter(Question.is_default == True).limit(5).all()
         final_question_ids = [q.id for q in defaults]
 
-    room = Room(
-        code=code,
-        title=title or "Best Friend Challenge",
-        creator_id=creator.id,
-        question_count=len(final_question_ids),
-        question_ids=json.dumps(final_question_ids),
-        status="WAITING"
-    )
-    db.add(room)
+    room.question_count = len(final_question_ids)
+    room.question_ids = json.dumps(final_question_ids)
+
     db.commit()
     db.refresh(room)
     db.refresh(creator)
-
-    if custom_questions:
-        db.query(CustomQuestion).filter(CustomQuestion.room_id == creator.id).update({"room_id": room.id})
-        db.commit()
 
     return room, creator
 
